@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link, Redirect, Switch, Route } from '../../lib/react-router-dom';
+import { Link, Redirect, Switch, Route, Router } from '../../lib/react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { Icon } from 'antd';
 
@@ -43,6 +43,7 @@ class UserLayout extends React.PureComponent {
   }
   render() {
     const { routerData, match, route } = this.props;
+    console.log(match, routerData, route);
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <div className="container">
@@ -56,16 +57,7 @@ class UserLayout extends React.PureComponent {
               <div className="desc">Login Page Header</div>
             </div>
             <Switch>
-              {getRoutes(match.path, routerData).map(item => (
-                <Route
-                  key={item.key}
-                  path={item.path}
-                  component={item.component}
-                  exact={item.exact}
-                />
-              ))}
-              {<route.indexRoute.component />}
-              <Redirect exact from="/user" to="/user/login" />
+              <route.indexRoute.component />
             </Switch>
           </div>
         </div>
