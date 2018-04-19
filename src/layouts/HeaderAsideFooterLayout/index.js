@@ -48,6 +48,7 @@ export default class HeaderAsideFooterResponsiveLayout extends Component {
           }}
         >
           <div className="logo" />
+          <SideMenu collapsed={this.state.collapsed} />
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }} />

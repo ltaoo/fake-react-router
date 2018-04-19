@@ -11,6 +11,7 @@ class SideMenu extends Component {
     };
 
     render() {
+        console.log(this.props);
         const { location } = this.props;
         return (
             <Sider trigger={null} collapsible collapsed={this.props.collapsed}>
@@ -39,5 +40,4 @@ class SideMenu extends Component {
     }
 }
 
-// export default withRouter(SideMenu);
-export default SideMenu;
+export default withRouter(SideMenu);
