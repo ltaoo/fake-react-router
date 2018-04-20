@@ -1,2 +1,2 @@
-import { Router } from '../router-router';
+import { Router } from '../react-router';
 export default Router;

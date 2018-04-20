@@ -44,7 +44,7 @@ class Router extends React.Component {
     componentWillMount() {
         const { children, history } = this.props;
 
-        if (children === null || React.Children.count(children) === 1) {
+        if (children !== null && React.Children.count(children) !== 1) {
             console.error('A <Router> may have only on child element');
         }
         // 注册监听器
