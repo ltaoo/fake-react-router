@@ -7,14 +7,6 @@ import matchPath from './matchPath';
 const isEmptyChildren = children => React.Children.count(children) === 0;
 
 class Route extends React.Component {
-    constructor(props, context) {
-        super(props);
-        const match = this.computedMatch(props, context.router);
-        console.log(match);
-        this.state = {
-            match,
-        };
-    }
     static propTypes = {
         // private, from <Switch>?
         computedMatch: PropTypes.object,
@@ -52,9 +44,9 @@ class Route extends React.Component {
         };
     }
 
-    // state = {
-    //     match: this.computedMatch(this.props, this.context.router),
-    // };
+    state = {
+        match: this.computedMatch(this.props, this.context.router),
+    };
 
     computedMatch({
         computedMatch,
@@ -77,7 +69,7 @@ class Route extends React.Component {
         const { route } = router;
         const pathname = (location || route.location).pathname;
         // console.log(pathname, path, route.match);
-        return matchPath(pathname, { path, strict, exact, sensitive }, route.match);
+        return path ? matchPath(pathname, { path, strict, exact, sensitive }, route.match) : route.match;
     }
 
     componentWillMount() {
@@ -115,7 +107,6 @@ class Route extends React.Component {
             '<Route> elements should not change from controlled to uncontrolled (or vice versa).' +
             'Yout provided a "location" prop initially but omitted it on a subsequent render'
         );
-        console.log('next props', nextProps);
         this.setState({
             match: this.computedMatch(nextProps, nextContext.router),
         });
